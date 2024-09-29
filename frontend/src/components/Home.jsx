@@ -13,12 +13,15 @@ function Home() {
     const fetchtodos = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:4001/todo/fetch", {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(
+          "https://todo-app-backend-ybka.onrender.com/todo/fetch",
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         setTodos(response.data.todos);
         setError(null);
       } catch (error) {
@@ -34,7 +37,7 @@ function Home() {
     if (!newTodo) return;
     try {
       const response = await axios.post(
-        "http://localhost:4001/todo/create",
+        "https://todo-app-backend-ybka.onrender.com/todo/create",
         {
           text: newTodo,
           completed: false,
@@ -54,7 +57,7 @@ function Home() {
     const todo = todos.find((t) => t._id === id);
     try {
       const response = await axios.put(
-        `http://localhost:4001/todo/update/${id}`,
+        `https://todo-app-backend-ybka.onrender.com/todo/update/${id}`,
         {
           ...todo,
           completed: !todo.completed,
@@ -71,9 +74,12 @@ function Home() {
 
   const todoDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4001/todo/delete/${id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://todo-app-backend-ybka.onrender.com/todo/delete/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       setTodos(todos.filter((t) => t._id !== id));
     } catch (error) {
       setError("Failed to Delete Todo");
@@ -83,9 +89,12 @@ function Home() {
   const navigateTo = useNavigate();
   const logout = async () => {
     try {
-      await axios.get("http://localhost:4001/user/logout", {
-        withCredentials: true,
-      });
+      await axios.get(
+        "https://todo-app-backend-ybka.onrender.com/user/logout",
+        {
+          withCredentials: true,
+        }
+      );
       toast.success("User logged out successfully");
       navigateTo("/login");
       localStorage.removeItem("jwt");
