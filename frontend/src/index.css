@@ -1,3 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "poppins", "sans-serif";
+}
+
+/* Hide the background image on larger screens */
+body {
+  background: none; /* No background image for larger screens */
+}
+
+/* Show the background image only on mobile devices */
+@media (max-width: 768px) {
+  body {
+    background: url(/background.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Ensure it covers the full screen */
+    width: 100%;
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+  }
+}
